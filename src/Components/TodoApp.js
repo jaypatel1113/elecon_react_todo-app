@@ -1,5 +1,6 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
+
 import AddIcon from '@mui/icons-material/Add';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 
@@ -134,13 +135,6 @@ const TodoApp = () => {
                     value={obj.color}
                     onChange={handleChange}
                 />
-                {/* <input
-                    type="button"
-                    value={isEdit ? "Update" : "Add"}
-                    onClick={handleClick}
-                    style={{ "--i": "#d63384" }}
-                    className={`${!isValid ? "disable" : ""}`}
-                /> */}
                 <button onClick={handleClick} style={{ "--i": "#d63384" }} disabled={!isValid}>
                     {isEdit ? <SyncAltIcon /> : <AddIcon />}
                 </button>

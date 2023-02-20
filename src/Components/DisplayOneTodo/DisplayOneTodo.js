@@ -1,17 +1,12 @@
 import React from "react";
+
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 import "./DisplayOneTodo.css";
 
-const DisplayOneTodo = ({
-    item,
-    handleDelete,
-    handleEdit,
-    handleComplete,
-    title,
-}) => {
+const DisplayOneTodo = ({ item, handleDelete, handleEdit, handleComplete, title, }) => {
     return (
         <>
             <div className="box" style={{ "--i": `${item.color}` }}>

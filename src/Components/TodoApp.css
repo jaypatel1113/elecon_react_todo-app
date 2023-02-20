@@ -16,7 +16,6 @@
     justify-content: center;
 }
 
-.inputcontainer input[type="button"],
 .inputcontainer button {
     background-color: rgba(255, 255, 255, 0.2);
     padding: 10px;
@@ -34,7 +33,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.inputcontainer input[type="button"]:hover,
 .inputcontainer button:hover {
     background-color: var(--i);
     color: #000;
@@ -88,30 +86,32 @@ input[type="color"]::-webkit-color-swatch {
     .inputcontainer {
         width: 100vw;
     }
+
     .inputcontainer input[type="text"] {
         width: 200px;
         margin: 40px 10px 20px;
         padding: 10px 20px;
     }
-    .inputcontainer input[type="button"] {
-        width: 50px;
-    }
 }
+
 @media screen and (max-width: 400px) {
     button svg {
         width: 15px !important;
         height: 15px !important;
     }
+
     input[type="color"] {
         width: 25px;
         height: 25px;
     }
 }
-@media screen and (max-width: 360px) {  
+
+@media screen and (max-width: 360px) {
     .inputcontainer {
         justify-content: space-between;
         padding: 0 5px;
     }
+
     /* .inputcontainer input[type="text"] {
         width: 150px;
         margin: 20px 5px 10px;

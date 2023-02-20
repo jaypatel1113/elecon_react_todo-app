@@ -5,13 +5,7 @@ import DisplayOneTodo from "../DisplayOneTodo/DisplayOneTodo";
 
 import "./DisplayPendingTodos.css";
 
-const DisplayPendingTodos = ({
-    data,
-    handleDelete,
-    handleEdit,
-    handleComplete,
-    title,
-}) => {
+const DisplayPendingTodos = ({ data, handleDelete, handleEdit, handleComplete, title, }) => {
     return (
         <div className="todocontainer">
             <h4
