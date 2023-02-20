@@ -1,4 +1,7 @@
 import React from "react";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 import "./DisplayOneTodo.css";
 
@@ -10,34 +13,40 @@ const DisplayOneTodo = ({
     title,
 }) => {
     return (
-        <div className="container" key={item.id}>
-            <div className="task">{item.task}</div>
-            <div className="task">{item.date}</div>
-            <div className="button">
-                <input
-                    type="button"
-                    value="Delete"
-                    onClick={() => handleDelete(item.id)}
-                    style={{ "--i": "#FBBC05" }}
-                />
-                {title === "Pending" && (
-                    <>
-                        <input
-                            type="button"
-                            value="Edit"
-                            onClick={() => handleEdit(item, item.id)}
-                            style={{ "--i": "#0dcaf0" }}
-                        />
-                        <input
-                            type="button"
-                            value="Completed"
-                            onClick={() => handleComplete(item, item.id)}
-                            style={{ "--i": "#d63384" }}
-                        />
-                    </>
-                )}
+        <>
+            <div className="box" style={{ "--i": `${item.color}` }}>
+                <div className="toprow">
+                    <div className="task">{item.task}</div>
+                </div>
+                <div className="bottomrow">
+                    <div className="task">{item.date}</div>
+                </div>
+                <div className="button">
+                    <button
+                        onClick={() => handleDelete(item.id)}
+                        style={{ "--i": "#F00" }}
+                    >
+                        <DeleteIcon />
+                    </button>
+                    {title === "Pending" && (
+                        <>
+                            <button
+                                onClick={() => handleEdit(item, item.id)}
+                                style={{ "--i": "#0dcaf0" }}
+                            >
+                                <EditIcon />
+                            </button>
+                            <button
+                                onClick={() => handleComplete(item, item.id)}
+                                style={{ "--i": "#20c997" }}
+                            >
+                                <DoneAllIcon />
+                            </button>
+                        </>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

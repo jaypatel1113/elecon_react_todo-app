@@ -1,5 +1,7 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
+import AddIcon from '@mui/icons-material/Add';
+import SyncAltIcon from '@mui/icons-material/SyncAlt';
 
 import DisplayPendingTodos from "./DisplayPendingTodos/DisplayPendingTodos";
 
@@ -10,8 +12,9 @@ import "./TodoApp.css";
 const TodoApp = () => {
     const [isEdit, setIsEdit] = useState(false);
     const [id, setId] = useState(null);
-    const [obj, setObj] = useState({ task: "" });
+    const [obj, setObj] = useState({ task: "", color: "#0ff" });
     const [data, setData] = useState([]);
+    const [isValid, setIsValid] = useState(false);
 
      const setLocalTodos= (todos) => localStorage.setItem("TodoData", JSON.stringify(todos));
      const getLocalTodos= () => JSON.parse(localStorage.getItem("TodoData"));
@@ -30,6 +33,11 @@ const TodoApp = () => {
 
     const handleChange = (e) => {
         e.preventDefault();
+        if(obj.task === "" || obj.task === null || obj.task === undefined) {
+            setIsValid(false);
+        } else {
+            setIsValid(true);
+        }
 
         const { value, name } = e.target;
         setObj({ ...obj, [name]: value });
@@ -37,14 +45,16 @@ const TodoApp = () => {
 
     const handleClick = (e) => {
         e.preventDefault();
+        // console.log(obj)
 
-        if (obj.task === undefined || obj.task === "") return;
-
+        if (obj.task === undefined || obj.task === "" || obj.color === "#000" || obj.color === "#000000") return;
+        
         if (isEdit) {
             // console.log(obj);
             data.filter((item) => {
                 if (id === item.id) {
                     item.task = obj.task;
+                    item.color = obj.color;
                     item.date = new Date().toLocaleString();
                     // console.log(item)
                     // console.log(data)
@@ -57,18 +67,21 @@ const TodoApp = () => {
             setId(null);
         } else {
             // console.log(obj);
-            const { task } = obj;
+            let { task, color } = obj;
+            color = color ? color : "#0ff";
             setData([
                 ...data,
                 {
                     task,
+                    color,
                     id: Math.random(),
                     isCompleted: false,
                     date: new Date().toLocaleString(),
                 },
             ]);
         }
-        setObj({ task: "" });
+        setObj({ task: "", color: "#0ff" });
+        setIsValid(false);
     };
 
     const handleDelete = (ind) => {
@@ -77,10 +90,10 @@ const TodoApp = () => {
         let newData = data.filter((item) => item.id !== ind);
         // console.log(newData);
         setData(newData);
-        setObj({ task: "" });
+        setObj({ task: "", color: "#0ff" });
     };
     
-    const handleComplete = (item, ind) => {
+    const handleComplete = (item, ind) => {setObj({ task: "", color: "#0ff" })
         setIsEdit(false);
         console.log(item);
         data.map((item) => {
@@ -90,15 +103,15 @@ const TodoApp = () => {
             }
         });
         // console.log(data)
-        setObj({ task: "" });
+        setObj({ task: "", color: "#0ff" });
         setLocalTodos(data);
     };
 
     const handleEdit = (item, ind) => {
         // console.log(item)
         setIsEdit(true);
-        const { task } = item;
-        setObj({ ...obj, task });
+        const { task, color } = item;
+        setObj({ ...obj, task, color });
         setId(ind);
     };
 
@@ -115,11 +128,22 @@ const TodoApp = () => {
                     onChange={handleChange}
                 />
                 <input
+                    type="color"
+                    name="color"
+                    id="color"
+                    value={obj.color}
+                    onChange={handleChange}
+                />
+                {/* <input
                     type="button"
                     value={isEdit ? "Update" : "Add"}
                     onClick={handleClick}
-                    style={{ "--i": "#20c997" }}
-                />
+                    style={{ "--i": "#d63384" }}
+                    className={`${!isValid ? "disable" : ""}`}
+                /> */}
+                <button onClick={handleClick} style={{ "--i": "#d63384" }} disabled={!isValid}>
+                    {isEdit ? <SyncAltIcon /> : <AddIcon />}
+                </button>
             </div>
 
             <div className="outputcontainer">
