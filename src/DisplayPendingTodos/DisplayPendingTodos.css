@@ -1,0 +1,33 @@
+.todocontainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.heading {
+    font-size: 22px;
+    background-color: var(--i);
+    color: #000;
+    border-radius: 30px;
+    width: 400px;
+    text-align: center;
+    padding: 10px 0;
+    margin: 40px auto 20px auto;
+    box-shadow: 0 0 5px var(--i),
+                0 0 10px var(--i),
+                0 0 20px var(--i);
+}
+
+.container,
+.headings {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+}
+
+.headingTitle {
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 10px 5px;
+    margin: 20px 40px;
+    border-radius: 15px;
+}

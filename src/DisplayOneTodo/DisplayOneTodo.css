@@ -1,0 +1,37 @@
+.container {
+    margin: 9px 0;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.button input {
+    width: 100px;
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.button input:hover {
+    background-color: var(--i);
+    color: #000;
+    font-weight: bolder;
+    transform: scale(0.9);
+    box-shadow: 0 0 5px var(--i),
+                0 0 10px var(--i),
+                0 0 20px var(--i),
+                0 0 40px var(--i);
+}
+.task {
+    display: grid;
+    place-items: center;
+}
