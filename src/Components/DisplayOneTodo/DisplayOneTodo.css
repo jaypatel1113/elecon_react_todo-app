@@ -15,6 +15,13 @@
         0 0 20px var(--i),
         0 0 40px var(--i);
 }
+.container:hover > .box {
+    opacity: 0.3;
+} 
+.container:hover > .box:hover {
+    transform: scale(1.1);
+    opacity: 1;
+} 
 
 .toprow {
     background: rgba(255, 255, 255, 0.25);

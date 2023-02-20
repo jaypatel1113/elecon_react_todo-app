@@ -51,8 +51,12 @@ const TodoApp = () => {
         e.preventDefault();
         // console.log(obj)
 
-        if (obj.task === undefined || obj.task === "" || obj.color === "#000" || obj.color === "#000000") {
+        if (obj.task === undefined || obj.task === "" ) {
             toast.error("Enter task & Select Color");
+            return;
+        }
+        if (obj.color === "#000" || obj.color === "#000000") {
+            toast.error("Select Color other than Black for better visibility");
             return;
         }
         
