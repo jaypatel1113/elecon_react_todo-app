@@ -1,9 +1,7 @@
 import React from "react";
-import TodoApp from "./TodoApp";
 import "./App.css";
+import TodoApp from "./Components/TodoApp";
 
-const App = () => {
-    return <TodoApp />;
-};
+const App = () =>  <TodoApp />;
 
 export default App;
