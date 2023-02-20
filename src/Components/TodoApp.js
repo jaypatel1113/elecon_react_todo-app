@@ -1,5 +1,8 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 import AddIcon from '@mui/icons-material/Add';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
@@ -13,7 +16,7 @@ import "./TodoApp.css";
 const TodoApp = () => {
     const [isEdit, setIsEdit] = useState(false);
     const [id, setId] = useState(null);
-    const [obj, setObj] = useState({ task: "", color: "#0ff" });
+    const [obj, setObj] = useState({ task: "", color: "#000" });
     const [data, setData] = useState([]);
     const [isValid, setIsValid] = useState(false);
 
@@ -48,7 +51,10 @@ const TodoApp = () => {
         e.preventDefault();
         // console.log(obj)
 
-        if (obj.task === undefined || obj.task === "" || obj.color === "#000" || obj.color === "#000000") return;
+        if (obj.task === undefined || obj.task === "" || obj.color === "#000" || obj.color === "#000000") {
+            toast.error("Enter task & Select Color");
+            return;
+        }
         
         if (isEdit) {
             // console.log(obj);
@@ -63,6 +69,7 @@ const TodoApp = () => {
                 setData(data);
                 setLocalTodos(data)
             });
+            toast.success("Updated Successfully!");
             // console.log(newData);
             setIsEdit(false);
             setId(null);
@@ -80,8 +87,10 @@ const TodoApp = () => {
                     date: new Date().toLocaleString(),
                 },
             ]);
+            
+            toast.success("Added Successfully!");
         }
-        setObj({ task: "", color: "#0ff" });
+        setObj({ task: "", color: "#000" });
         setIsValid(false);
     };
 
@@ -91,10 +100,11 @@ const TodoApp = () => {
         let newData = data.filter((item) => item.id !== ind);
         // console.log(newData);
         setData(newData);
-        setObj({ task: "", color: "#0ff" });
+        setObj({ task: "", color: "#000" });
+        toast.success("Deleted Successfully!");
     };
     
-    const handleComplete = (item, ind) => {setObj({ task: "", color: "#0ff" })
+    const handleComplete = (item, ind) => {setObj({ task: "", color: "#000" })
         setIsEdit(false);
         console.log(item);
         data.map((item) => {
@@ -104,8 +114,9 @@ const TodoApp = () => {
             }
         });
         // console.log(data)
-        setObj({ task: "", color: "#0ff" });
+        setObj({ task: "", color: "#000" });
         setLocalTodos(data);
+        toast.success("Completed Successfully!");
     };
 
     const handleEdit = (item, ind) => {
@@ -154,6 +165,12 @@ const TodoApp = () => {
                     title="Completed"
                 />
             </div>
+            <ToastContainer
+                theme="colored"
+                position="bottom-right"
+                style={{ fontSize: "14px" }}
+                autoClose={2000}
+            />
         </div>
     );
 };
