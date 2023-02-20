@@ -21,7 +21,7 @@ const DisplayPendingTodos = ({
                 {title} Tasks
             </h4>
             <div className="container">
-                {data?.map((item, index) => {
+                {data.reverse()?.map((item, index) => {
                     if (title === "Pending") {
                         if (!item.isCompleted) {
                             return (
